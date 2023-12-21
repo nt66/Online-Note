@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import HoldBar from '../HoldBar';
+import UserHander from '../UserHander';
+import Search from '../Search';
 import './index.less'
 
 function LeftPanel() {
   return (
-    <div className='panel-container' style={{width:'343px',maxWidth: '343px', userSelect: 'none'}}>
-      <div className='panel-wrap'>
-
+    <div className='panel-container'>
+      <div className='panel-wrap' style={{width:'269px',maxWidth: '269px', userSelect: 'none'}}>
+        <UserHander />
+        <Search />
       </div>
+      <HoldBar />
     </div>
   )
 }
 
-export default LeftPanel
+export default React.memo(LeftPanel)

@@ -1,0 +1,49 @@
+.bar-wrap {
+  position: relative;
+  z-index: 250;
+  display: block;
+  width: 0px;
+  height: 100%;
+}
+
+.bar-hover {
+  position: relative;
+  z-index: 30;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  transform: translateX(-3px);
+}
+
+.bar-hover::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  width: 1px;
+  height: 100%;
+  background-color: #dedee1;
+  transition: background-color 0.2s ease-in-out 0s;
+}
+
+.bar-hover.bar-hover:hover::before {
+  background-color: #5856d5;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-radius: 100%;
+  color: rgb(201, 201, 206);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // visibility: hidden;
+  transform: translateX(-50%) translateY(-50%);
+  transition: transform 0.2s ease 0s, color 0.2s ease 0s, background-color 0.2s ease 0s;
+}
