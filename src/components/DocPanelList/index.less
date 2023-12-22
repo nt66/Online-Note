@@ -1,0 +1,82 @@
+.list-container{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.my-doc-header{
+  padding: 2px 8px;
+}
+
+.my-doc-header-bg{
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  -webkit-box-align: center;
+  padding: 2px 8px;
+  background: #deddf7;
+  border-radius: 6px;
+  color: #5856d5;
+  font-size: 14px;
+  transition: background 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
+}
+
+.mydoc-title{
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.doc-views{
+  width: auto;
+  overflow: hidden;
+  position: relative;
+  // border-bottom: 1px solid #dedee1;
+}
+
+.doc-views:hover {
+  overflow: auto;
+}
+
+.doc-views:hover::-webkit-scrollbar {
+  width: 8px;
+}
+
+.doc-views:hover::-webkit-scrollbar-thumb {
+  background-color:#ddd;
+  border-radius: 20px;
+}
+
+.doc-views:hover::-webkit-scrollbar-track {
+  background-color: #f4f4f5;
+}
+
+.add-btn{
+  position: relative;
+  display: flex;
+  height: 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+  color: #1d1d1f;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease 0s, color 0.2s ease 0s, box-shadow 0.2s ease 0s, border 0.2s ease 0s;
+  white-space: nowrap;
+}
+
+.add-btn:hover{
+  background-color: #e9e9eb;
+}
+.add-btn:active{
+  background-color: #eee;
+}
