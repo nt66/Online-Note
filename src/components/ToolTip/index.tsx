@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,ReactNode } from 'react'
 import './index.less'
 
 interface TooltipProps {
-  text: string;
+  text: string
+  children: ReactNode
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
@@ -10,18 +11,18 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
 
   const handleMouseEnter = () => {
     setShowTooltip(true)
-  };
+  }
 
   const handleMouseLeave = () => {
     setShowTooltip(false)
-  };
+  }
 
   return (
     <div className="tooltip-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
       {showTooltip && <div className="tooltip-text"><span>{text}</span></div>}
     </div>
-  );
-};
+  )
+}
 
 export default React.memo(Tooltip)

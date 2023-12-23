@@ -1,7 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext, useMemo } from 'react'
+import { NoteContext } from '../../store/context'
+import DocDataType from '../../data/type'
+
 import './index.less'
 
-function DocPage() {
+interface DocPageProps {
+  data: DocDataType
+}
+
+const DocPage:React.FC<DocPageProps> =({data}) => {
+
+  const docResult = useMemo(()=>{
+    return(
+      <div>
+      {
+        data?.contentList?.map((item:any)=>{
+          return(
+            <div className='doc-page-p' contentEditable="true">
+              <span>{Object.values(item)}</span>
+            </div>
+          )
+        })
+      }
+      </div>
+    )
+  },[data])
+  
   return (
     <div className='doc-wrap' style={{ marginRight: '1px', height: 'calc(100vh - 46px)' }}>
       <div style={{ height: 'auto' }}>
@@ -9,12 +33,11 @@ function DocPage() {
           <div className='doc-outliner'>
             <div className='doc-page'>
               <div className='doc-page-header'>
-                <div className='doc-page-header-title' contenteditable="true" spellcheck="true" autocapitalize="off">
+                <div className='doc-page-header-title' contentEditable="true" spellCheck="true" autoCapitalize="off">
+                {data?.title}
                 </div>
               </div>
-              <div className='doc-page-p' contenteditable="true">
-                <span>今日计划阿萨德阿萨的阿萨德</span>
-              </div>
+              {docResult}
             </div>
           </div>
         </div>

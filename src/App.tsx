@@ -1,15 +1,18 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-import LeftPanel from './components/LeftPanel';
-import DocMain from './components/DocMain';
+// import { useState, useContext } from 'react'
+import LeftPanel from './components/LeftPanel'
+import DocMain from './components/DocMain'
+import { NoteProvider } from './store/context'
+
 import './App.less'
 
 function App() {
   return (
-    <main className='app'>
-      <LeftPanel />
-      <DocMain />
-    </main>
+    <NoteProvider>
+      <main className='app'>
+        <LeftPanel />
+        <DocMain />
+      </main>
+    </NoteProvider>
   )
 }
 

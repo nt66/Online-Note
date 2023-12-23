@@ -13,32 +13,32 @@
   height: 32px;
   line-height: 32px;
   padding-left: 0px;
-  background-color: transparent;
+  background-color:transparent;
   pointer-events: auto;
   transition: background 0.2s ease-in-out 0s;
   user-select: none;
 }
 
-// .doc-item::before{
-//   position: absolute;
-//   left: 8px;
-//   width: calc(100% - 11px);
-//   height: 100%;
-//   border: none;
-//   background-color:#e9e9eb;
-//   border-radius: 4px;
-//   content: "";
-//   cursor: pointer;
-//   pointer-events: none;
-// }
-
-.doc-item.doc-item:hover:before{
+.doc-item.doc-item:hover:before {
   position: absolute;
   left: 8px;
   width: calc(100% - 11px);
   height: 100%;
   border: none;
   background-color:#e9e9eb;
+  border-radius: 4px;
+  content: "";
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.doc-item-selected {
+  position: absolute;
+  left: 8px;
+  width: calc(100% - 11px);
+  height: 100%;
+  border: none;
+  background-color:transparent;
   border-radius: 4px;
   content: "";
   cursor: pointer;
