@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
-import { debounce } from '../../utils'
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import { debounce, splitStringByDiv, extractDivContent } from '../../utils'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 
@@ -11,20 +13,20 @@ interface DocPageProps {
   // currentData:DocDataType
 }
 
-const DocPage: React.FC<DocPageProps> = ({}) => {
+const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
   const { docData, update, currentId } = useContext(NoteContext)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  // const markdownText = `# Hello, React Markdown!`
 
   useEffect(() => {
     const currentDocData = docData?.filter((item: any) => item.id === currentId)
     setTitle(currentDocData[0]?.title)
     setContent(currentDocData[0]?.content)
-  },[currentId])
+  }, [currentId])
 
   const handleTitleInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    // setTitle(newContent)
     update(currentId, {
       type: 'title',
       value: newContent
@@ -33,7 +35,7 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
 
   const handleContentInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    // setContent(newContent)
+    // setContent(event.target.innerText)
     update(currentId, {
       type: 'content',
       value: newContent,
@@ -48,7 +50,7 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
             <div className='doc-page'>
               <div className='doc-page-header'>
                 <div
-                  key={currentId}
+                  key={`h${currentId}`}
                   className='doc-page-header-title'
                   contentEditable="true"
                   spellCheck="true"
@@ -58,24 +60,31 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
                 </div>
               </div>
               <div
-                key={currentId}
+                key={`p${currentId}`}
                 className='doc-page-p'
                 contentEditable="true"
-                spellCheck="true"
                 onInput={handleContentInputChange}
                 dangerouslySetInnerHTML={{ __html: content }}
               >
               </div>
-              {/* <div
-                key={currentId}
+              <div
+                key={`m${currentId}`}
                 className='doc-page-md'
-                contentEditable="true"
-                spellCheck="true"
-                onInput={handleContentInputChange}
-                // dangerouslySetInnerHTML={{ __html: content }}
               >
-                <ReactMarkdown>{content}</ReactMarkdown>
-              </div> */}
+                --mk--
+                {
+                  (splitStringByDiv(content))?.map((item) => {
+                    return (
+                      <ReactMarkdown
+                        rehypePlugins={[rehypeRaw]}
+                        remarkPlugins={[remarkGfm]}
+                      >
+                        {item}
+                      </ReactMarkdown>
+                    )
+                  })
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -84,4 +93,4 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
   )
 }
 
-export default React.memo(DocPage)
+export default React.memo(MarkDownPage)

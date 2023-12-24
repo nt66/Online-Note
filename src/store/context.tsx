@@ -24,7 +24,10 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const create = () => {
     const newDocData = createInitData()
     setDocData([...docData, newDocData])
-    setCurrentId(newDocData.id)
+    setTimeout(() => {
+      setCurrentId(newDocData.id)
+    },100)
+    
     localStorage.setItem('NoteApp', JSON.stringify([...docData, newDocData]))
   }
 

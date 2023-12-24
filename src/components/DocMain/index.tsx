@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import DocTools from '../DocTools'
 import DocPage from '../DocPage'
+import MarkdownPage from '../MarkDownPage'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 
@@ -23,7 +24,8 @@ function DocMain() {
     <div className='doc-container' style={{marginLeft: '269px', overflow: 'hidden', zIndex: 'auto'}}>
       <div className='doc-bg'>
         <DocTools />
-        <DocPage />
+        {/* <DocPage /> */}
+        <MarkdownPage />
       </div>
     </div>
   )
