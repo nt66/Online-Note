@@ -1,7 +1,9 @@
-import React,{ useContext } from 'react'
+import React, { useContext,useState } from 'react'
+import { ReactSVG } from 'react-svg'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 import note from '../../assets/note.svg'
+import del from '../../assets/del.svg'
 import './index.less'
 
 interface DocItemProps {
@@ -10,15 +12,23 @@ interface DocItemProps {
 }
 
 const DocItem: React.FC<DocItemProps> = ({ item }) => {
-  const { updateCurrent, currentId } = useContext(NoteContext)
   const { title, id } = item
+  const { updateCurrent, currentId, remove  } = useContext(NoteContext)
+  const [isHover, setHover] = useState(false)
   return (
     <div className='doc-item-wrap'>
-      <div className='doc-item' onClick={()=>updateCurrent(id)}>
-        <div className='doc-item-selected' style={{backgroundColor:`${currentId === id?'#e9e9eb':'transparent'}`}}>
+      <div className='doc-item' 
+        onClick={() => updateCurrent(id)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        >
+        <div className='doc-item-selected' style={{ backgroundColor: `${currentId === id ? '#e9e9eb' : 'transparent'}` }}>
           <div className='item-row'>
             <img src={note} className='item-row-icon' />
             <div className='doc-title'>{title}</div>
+            {isHover &&(<button className='doc-delete' onClick={()=>remove(id)} >
+              <ReactSVG src={del} style={{ width: '20px', height: '20px' }} />
+            </button>)}
           </div>
         </div>
       </div>

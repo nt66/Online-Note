@@ -5,8 +5,8 @@ interface NoteContextProps {
   docData: any[]
   currentId:string
   create: () => void
-  remove: () => void
-  update: () => void
+  remove: (id:string) => void
+  update: (id:string) => void
   updateCurrent:(id:string) => void
 }
 
@@ -34,7 +34,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const create = () => {
     const newDocData =createInitData()
     setDocData([...docData,newDocData])
-    setCurrentId(newDocData.id)
+    // setCurrentId(newDocData.id)
   }
 
   const updateCurrent = (id:string)=>{
@@ -42,13 +42,15 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   }
 
   // 删除
-  const remove = () => {
-
+  const remove = (id:string) => {
+    const newDocData = docData.filter(item=>item.id !== id)
+    setDocData(newDocData)
+    // setCurrentId(newDocData[0]?.id)
   }
 
   // 更新
-  const update = () => {
-    // setCount((prevCount) => prevCount - 1)
+  const update = (id:string) => {
+
   }
 
   const contextValue: NoteContextProps = {

@@ -7,9 +7,13 @@ import DocDataType from '../../data/type'
 import './index.less'
 
 function DocMain() {
+  const { docData, currentId,updateCurrent } = useContext(NoteContext)
   const [ currentData, setCurrentData ] = useState({} as DocDataType)
-  const { docData, currentId } = useContext(NoteContext)
-  
+
+  useEffect(()=>{
+    updateCurrent(docData[docData?.length-1]?.id)
+  },[docData])
+
   useEffect(()=>{
     const currentDocData = docData.filter((item:any)=>item.id === currentId)
     setCurrentData(currentDocData[0]||{})

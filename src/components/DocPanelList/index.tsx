@@ -8,7 +8,7 @@ import add from '../../assets/add.svg'
 import './index.less'
 
 function DocPanelList() {
-  const { docData, create, remove } = useContext(NoteContext)
+  const { docData, create } = useContext(NoteContext)
   // 文档列表
   const docItemResult = useMemo(()=>{
       return(

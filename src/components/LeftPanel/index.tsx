@@ -9,7 +9,7 @@ import './index.less'
 
 function LeftPanel() {
   const { docData } = useContext(NoteContext);
-  console.log('docData', docData);
+  // console.log('docData', docData);
   return (
     <div className='panel-container'>
       <div className='panel-wrap' style={{ width: '269px', maxWidth: '269px', userSelect: 'none' }}>
