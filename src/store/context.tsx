@@ -28,30 +28,34 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     localStorage.setItem('NoteApp', JSON.stringify([...docData, newDocData]))
   }
 
-  const updateCurrent = (id: string) => {
-    setCurrentId(id)
-  }
-
   // 删除
   const remove = (id: string) => {
     const newDocData = docData.filter(item => item.id !== id)
     setDocData(newDocData)
+    
+    // 先这样写
     setTimeout(() => {
       setCurrentId(newDocData[newDocData.length - 1]?.id)
-    }, 200)
+    }, 100)
     localStorage.setItem('NoteApp', JSON.stringify(newDocData))
   }
 
   // 更新
   const update = (id: string, content: any) => {
-    console.log(id, content.title)
-    // const newDocData = docData.map(item=>{
-    //   if(item.id === id){
-    //     item.title = content.title
-    //   }
-    //   return item
-    // })
-    // setDocData(newDocData)
+    const { type, value } = content
+    const newDocData = docData.map(item=>{
+      if(item.id === id){
+        item[type] = value
+      }
+      return item
+    })
+    setDocData(newDocData)
+    localStorage.setItem('NoteApp', JSON.stringify(newDocData))
+  }
+
+  // 更新当前id
+  const updateCurrent = (id: string) => {
+    setCurrentId(id)
   }
 
   const contextValue: NoteContextProps = {

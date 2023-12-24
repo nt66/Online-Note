@@ -3,5 +3,5 @@ export default interface DocDataType {
   title:string,
   data:string,
   markdown:boolean,
-  contentList: any[],
+  content: string,
 }

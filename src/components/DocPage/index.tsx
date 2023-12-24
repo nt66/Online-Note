@@ -1,38 +1,44 @@
-import React, { useContext, useMemo,useState } from 'react'
+import React, { useContext, useMemo, useState, useEffect } from 'react'
+import { debounce } from '../../utils/index'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 
 import './index.less'
 
 interface DocPageProps {
-  data: DocDataType
+  // data: DocDataType
 }
 
-const DocPage:React.FC<DocPageProps> =({data}) => {
+const DocPage: React.FC<DocPageProps> = ({ }) => {
   const { docData, update, currentId } = useContext(NoteContext)
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 
-  // document render
-  const docResult = useMemo(()=>{
-    return(<div>
-      {
-        data?.contentList?.map((item:any)=>{
-          return(
-            <div className='doc-page-p' contentEditable="true" spellCheck="true">
-              {Object.values(item)}
-            </div>
-          )
-        })
-      }
-    </div>)
-  },[data])
+  useEffect(() => {
+    const currentDocData = docData?.filter((item: any) => item.id === currentId)
+    console.log('currentDocData',currentDocData)
+    setTitle(currentDocData[0]?.title)
+    setContent(currentDocData[0]?.content)
+  }, [currentId])
 
-  
-  const handleInputChange = (event:any) => {
+  const handleTitleInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    setContent(newContent);
-  }
-  
+    // setTitle(newContent)
+    update(currentId, {
+      type: 'title',
+      value: newContent
+    })
+  }, 300)
+
+  const handleContentInputChange = debounce((event: any) => {
+    const newContent = event.target.innerHTML
+    // setContent(newContent)
+    update(currentId, {
+      type: 'content',
+      value: newContent,
+    })
+  }, 300)
+  console.log('title99:',title);
   return (
     <div className='doc-wrap' style={{ marginRight: '1px', height: 'calc(100vh - 46px)' }}>
       <div style={{ height: 'auto' }}>
@@ -40,17 +46,23 @@ const DocPage:React.FC<DocPageProps> =({data}) => {
           <div className='doc-outliner'>
             <div className='doc-page'>
               <div className='doc-page-header'>
-                <div 
-                  className='doc-page-header-title' 
+                <div
+                  className='doc-page-header-title'
                   contentEditable="true"
                   spellCheck="true"
-                  onInput={handleInputChange}
-                  // dangerouslySetInnerHTML={{ __html: content }}
-                  >
-                  {data.title}
+                  onInput={handleTitleInputChange}
+                  dangerouslySetInnerHTML={{ __html: title }}
+                >
                 </div>
               </div>
-              {docResult}
+              <div
+                className='doc-page-p'
+                contentEditable="true"
+                spellCheck="true"
+                onInput={handleContentInputChange}
+                dangerouslySetInnerHTML={{ __html: content }}
+              >
+              </div>
             </div>
           </div>
         </div>

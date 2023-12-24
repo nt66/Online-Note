@@ -7,7 +7,7 @@ import DocDataType from '../../data/type'
 import './index.less'
 
 function DocMain() {
-  const { docData, currentId,updateCurrent } = useContext(NoteContext)
+  const { docData, currentId, updateCurrent } = useContext(NoteContext)
   const [ currentData, setCurrentData ] = useState({} as DocDataType)
 
   // useEffect(()=>{
@@ -23,7 +23,7 @@ function DocMain() {
     <div className='doc-container' style={{marginLeft: '269px', overflow: 'hidden', zIndex: 'auto'}}>
       <div className='doc-bg'>
         <DocTools />
-        <DocPage data={currentData} />
+        <DocPage />
       </div>
     </div>
   )

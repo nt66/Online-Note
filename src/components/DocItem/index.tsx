@@ -1,5 +1,6 @@
 import React, { useContext,useState } from 'react'
 import { ReactSVG } from 'react-svg'
+import { removeHtmlTags } from '../../utils/index'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 import note from '../../assets/note.svg'
@@ -25,7 +26,7 @@ const DocItem: React.FC<DocItemProps> = ({ item }) => {
         <div className='doc-item-selected' style={{ backgroundColor: `${currentId === id ? '#e9e9eb' : 'transparent'}` }}>
           <div className='item-row'>
             <img src={note} className='item-row-icon' />
-            <div className='doc-title'>{title}</div>
+            <div className='doc-title'>{removeHtmlTags(title)}</div>
             {isHover &&(<button className='doc-delete' onClick={()=>remove(id)} >
               <ReactSVG src={del} style={{ width: '20px', height: '20px' }} />
             </button>)}
