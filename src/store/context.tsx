@@ -3,11 +3,11 @@ import { createInitData } from '../utils/index'
 
 interface NoteContextProps {
   docData: any[]
-  currentId:string
+  currentId: string
   create: () => void
-  remove: (id:string) => void
-  update: (id:string) => void
-  updateCurrent:(id:string) => void
+  remove: (id: string) => void
+  update: (id: string, content: any) => void
+  updateCurrent: (id: string) => void
 }
 
 interface NoteProviderProps {
@@ -16,41 +16,42 @@ interface NoteProviderProps {
 
 const NoteContext = createContext({} as NoteContextProps)
 
-const initData = [
-  {
-    id:"b46bd746-9dc4-44fd-bfa3-7c63c8772573",
-    title:"欢迎使用",
-    date:"2023-12-22",
-    markdown:false,
-    contentList:[{"b46bd746-9dc4-44fd-bfa3-7c8763332103":"欢迎使用 new note app!"}]
-  }
-]
-
 const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
-  const [docData, setDocData] = useState(initData)
-  const [currentId, setCurrentId] = useState(initData[0]?.id)
-
+  const NoteApp: string | null = localStorage.getItem('NoteApp') as string
+  const [docData, setDocData] = useState(JSON.parse(NoteApp) || [])
+  const [currentId, setCurrentId] = useState(JSON.parse(NoteApp)[0]?.id)
   // 添加
   const create = () => {
-    const newDocData =createInitData()
-    setDocData([...docData,newDocData])
-    // setCurrentId(newDocData.id)
+    const newDocData = createInitData()
+    setDocData([...docData, newDocData])
+    setCurrentId(newDocData.id)
+    localStorage.setItem('NoteApp', JSON.stringify([...docData, newDocData]))
   }
 
-  const updateCurrent = (id:string)=>{
+  const updateCurrent = (id: string) => {
     setCurrentId(id)
   }
 
   // 删除
-  const remove = (id:string) => {
-    const newDocData = docData.filter(item=>item.id !== id)
+  const remove = (id: string) => {
+    const newDocData = docData.filter(item => item.id !== id)
     setDocData(newDocData)
-    // setCurrentId(newDocData[0]?.id)
+    setTimeout(() => {
+      setCurrentId(newDocData[newDocData.length - 1]?.id)
+    }, 200)
+    localStorage.setItem('NoteApp', JSON.stringify(newDocData))
   }
 
   // 更新
-  const update = (id:string) => {
-
+  const update = (id: string, content: any) => {
+    console.log(id, content.title)
+    // const newDocData = docData.map(item=>{
+    //   if(item.id === id){
+    //     item.title = content.title
+    //   }
+    //   return item
+    // })
+    // setDocData(newDocData)
   }
 
   const contextValue: NoteContextProps = {
@@ -61,10 +62,10 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     update,
     updateCurrent,
   }
-  return (<NoteContext.Provider value={contextValue} > { children } </NoteContext.Provider>)
+  return (<NoteContext.Provider value={contextValue} > {children} </NoteContext.Provider>)
 }
 
 export {
   NoteContext,
   NoteProvider
-} 
+}

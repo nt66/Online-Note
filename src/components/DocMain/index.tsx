@@ -10,9 +10,9 @@ function DocMain() {
   const { docData, currentId,updateCurrent } = useContext(NoteContext)
   const [ currentData, setCurrentData ] = useState({} as DocDataType)
 
-  useEffect(()=>{
-    updateCurrent(docData[docData?.length-1]?.id)
-  },[docData])
+  // useEffect(()=>{
+  //   updateCurrent(docData[docData?.length-1]?.id)
+  // },[docData])
 
   useEffect(()=>{
     const currentDocData = docData.filter((item:any)=>item.id === currentId)
