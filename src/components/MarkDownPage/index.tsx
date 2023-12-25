@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, Fragment, useRef } from 'react'
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import { debounce, splitStringByDiv, extractDivContent } from '../../utils'
+import { debounce, splitStringByDiv } from '../../utils'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 
@@ -17,13 +17,29 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
   const { docData, update, currentId } = useContext(NoteContext)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  // const markdownText = `# Hello, React Markdown!`
+  const [editing, setEditing] = useState(false)
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    const currentDocData = docData?.filter((item: any) => item.id === currentId)
-    setTitle(currentDocData[0]?.title)
-    setContent(currentDocData[0]?.content)
-  }, [currentId])
+    if (!editing) {
+      const currentDocData = docData?.filter((item: any) => item.id === currentId)
+      setTitle(currentDocData[0]?.title)
+      setContent(currentDocData[0]?.content)
+    }
+  }, [currentId, editing])
+
+  useEffect(() => {
+    if (contentRef.current && editing) {
+      contentRef.current.focus()
+      const selection = window.getSelection()
+      const range = document.createRange()
+      range.selectNodeContents(contentRef.current)
+      range.collapse(false)
+      selection?.removeAllRanges()
+      selection?.addRange(range)
+    }
+  }, [contentRef, editing])
+
 
   const handleTitleInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
@@ -35,7 +51,6 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
 
   const handleContentInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    // setContent(event.target.innerText)
     update(currentId, {
       type: 'content',
       value: newContent,
@@ -59,32 +74,40 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
                 >
                 </div>
               </div>
-              <div
-                key={`p${currentId}`}
-                className='doc-page-p'
-                contentEditable="true"
-                onInput={handleContentInputChange}
-                dangerouslySetInnerHTML={{ __html: content }}
-              >
-              </div>
-              <div
-                key={`m${currentId}`}
-                className='doc-page-md'
-              >
-                --mk--
-                {
-                  (splitStringByDiv(content))?.map((item) => {
-                    return (
-                      <ReactMarkdown
-                        rehypePlugins={[rehypeRaw]}
-                        remarkPlugins={[remarkGfm]}
-                      >
-                        {item}
-                      </ReactMarkdown>
-                    )
-                  })
-                }
-              </div>
+              {
+                editing ? (
+                  <div
+                    ref={contentRef}
+                    key={`p${currentId}`}
+                    className='doc-page-p'
+                    contentEditable="true"
+                    onInput={handleContentInputChange}
+                    onBlur={() => setEditing(false)}
+                    dangerouslySetInnerHTML={{ __html: content }}
+                  >
+                  </div>) : (
+                  <div
+                    key={`m${currentId}`}
+                    className='doc-page-md'
+                    onClick={() => setEditing(true)}
+                  >
+                    {
+                      (splitStringByDiv(content))?.map((item, index: number) => {
+                        return (
+                          <Fragment key={index}>
+                            <ReactMarkdown
+                              rehypePlugins={[rehypeRaw]}
+                              remarkPlugins={[remarkGfm]}
+                            >
+                              {item}
+                            </ReactMarkdown>
+                          </Fragment>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>

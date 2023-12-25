@@ -32,54 +32,39 @@ function removeHtmlTags(input: string): string {
   return input.replace(/<\/?[^>]+(>|$)/g, '');
 }
 
-const splitStringByDiv = (str:string):string[] => {
+// 切标签
+const splitStringByDiv = (str: string): string[] => {
   const divPattern = /<div>(.*?)<\/div>/g
-  const firstDivPattern = /^(.*?)(<div>.*<\/div>)/;
-  const lastDivPattern = /(<div>.*<\/div>)(.*?)$/;
-  const matches:string[] = []
+  const firstDivPattern = /^(.*?)(<div>.*<\/div>)/
+  const lastDivPattern = /(<div>.*<\/div>)(.*?)$/
+  const matches: string[] = []
   let match: RegExpExecArray | null
 
-  const firstMatch = str.match(firstDivPattern);
-  const lastMatch = str.match(lastDivPattern);
+  const firstMatch = str.match(firstDivPattern)
+  const lastMatch = str.match(lastDivPattern)
 
   while ((match = divPattern.exec(str)) !== null) {
     matches.push(match[1])
   }
-  if(firstMatch){
+  if (firstMatch) {
     matches.unshift(firstMatch[1].trim())
   }
 
-  if(lastMatch){
+  if (lastMatch) {
     matches.push(lastMatch[2].trim())
+  }
+
+  if (matches.length === 0) {
+    matches.push(str)
   }
 
   return matches
 }
 
-function extractDivContent(str:string) {
-  const divPattern = /<div>(.*?)<\/div>|([^<]*)/g;
-  const matches = [];
-  let match;
-
-  while ((match = divPattern.exec(str)) !== null) {
-    const [, divContent, noDivContent] = match;
-
-    if (divContent !== undefined) {
-      matches.push(divContent);
-    }
-
-    if (noDivContent !== undefined && noDivContent.trim() !== "") {
-      matches.push(noDivContent.trim());
-    }
-  }
-
-  return matches;
-}
 
 export {
   createInitData,
   debounce,
   removeHtmlTags,
   splitStringByDiv,
-  extractDivContent
 }
