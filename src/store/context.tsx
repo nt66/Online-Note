@@ -24,7 +24,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const [currentId, setCurrentId] = useState(JSON.parse(NoteApp)[0]?.id)
   const [shrinkPanel, setShrinkPanel] = useState(false)
 
-  // 添加
+  // 添加data
   const create = () => {
     const newDocData = createInitData()
     setDocData([...docData, newDocData])
@@ -35,7 +35,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     localStorage.setItem('NoteApp', JSON.stringify([...docData, newDocData]))
   }
 
-  // 删除
+  // 删除data
   const remove = (id: string) => {
     const newDocData = docData.filter(item => item.id !== id)
     setDocData(newDocData)
@@ -47,7 +47,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     localStorage.setItem('NoteApp', JSON.stringify(newDocData))
   }
 
-  // 更新
+  // 更新data
   const update = (id: string, content: any) => {
     const { type, value } = content
     const newDocData = docData.map(item=>{
@@ -60,11 +60,12 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     localStorage.setItem('NoteApp', JSON.stringify(newDocData))
   }
 
-  // 更新当前id
+  // 更新id
   const updateCurrent = (id: string) => {
     setCurrentId(id)
   }
 
+  // 是否收缩
   const setShrink = () => {
     setShrinkPanel(!shrinkPanel)
   }

@@ -10,7 +10,7 @@ import grown from '../../assets/grown.svg'
 import './index.less'
 
 function DocMain() {
-  const { docData, currentId, updateCurrent, shrinkPanel, setShrink } = useContext(NoteContext)
+  const { docData, currentId, shrinkPanel, setShrink } = useContext(NoteContext)
   const [currentData, setCurrentData] = useState({} as DocDataType)
 
   // useEffect(()=>{
