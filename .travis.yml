@@ -6,6 +6,8 @@ cache: npm
 branches:
   only:
     - main # build master branch only
+install:
+  - npm install
 script:
   - npm run build # generate static files
 deploy:
