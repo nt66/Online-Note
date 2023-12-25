@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { NoteContext } from '../../store/context'
 import ToolTip from '../ToolTip'
 import Switch from '../Switch'
 import { ReactSVG } from 'react-svg'
@@ -11,7 +12,22 @@ import h3 from '../../assets/h3.svg'
 import Markdown from '../../assets/Markdown.svg'
 import './index.less'
 
-function DocTools() {
+interface DocToolsPros {
+  currentData:any
+}
+
+const DocTools: React.FC<DocToolsPros>=({currentData})=> {
+  const {currentId, update } = useContext(NoteContext)
+
+  // markdown开关
+  const handleChange =(isChecked:boolean)=>{
+    console.log('markdown Checked:',isChecked)
+    update(currentId, {
+      type:'markdown',
+      value:isChecked,
+    })
+  }
+
   return (
     <div className='doc-tools'>
       <header className='doc-header-wrap'>
@@ -40,7 +56,7 @@ function DocTools() {
             src={Markdown} 
             style={{width:'20px',height:'20px',marginRight:'10px'}} 
           />
-          <Switch />
+          <Switch onChange={handleChange} defaultValue={currentData?.markdown} />
         </div>
       </header>
 

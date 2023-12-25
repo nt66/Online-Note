@@ -9,23 +9,22 @@ import './index.less'
 
 function DocMain() {
   const { docData, currentId, updateCurrent } = useContext(NoteContext)
-  const [ currentData, setCurrentData ] = useState({} as DocDataType)
+  const [currentData, setCurrentData] = useState({} as DocDataType)
 
   // useEffect(()=>{
   //   updateCurrent(docData[docData?.length-1]?.id)
   // },[docData])
 
-  useEffect(()=>{
-    const currentDocData = docData.filter((item:any)=>item.id === currentId)
-    setCurrentData(currentDocData[0]||{})
-  },[currentId])
-  
+  useEffect(() => {
+    const currentDocData = docData.filter((item: any) => item.id === currentId)
+    setCurrentData(currentDocData[0] || {})
+  }, [currentId])
+
   return (
-    <div className='doc-container' style={{marginLeft: '269px', overflow: 'hidden', zIndex: 'auto'}}>
+    <div className='doc-container' style={{ marginLeft: '269px', overflow: 'hidden', zIndex: 'auto' }}>
       <div className='doc-bg'>
-        <DocTools />
-        {/* <DocPage /> */}
-        <MarkdownPage />
+        <DocTools currentData={currentData} />
+        {currentData?.markdown ? <MarkdownPage /> : <DocPage />}
       </div>
     </div>
   )
