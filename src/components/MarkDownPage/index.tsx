@@ -4,7 +4,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { debounce, splitStringByDiv } from '../../utils'
 import { NoteContext } from '../../store/context'
-import DocDataType from '../../data/type'
+// import DocDataType from '../../data/type'
 
 import './index.less'
 
@@ -18,7 +18,7 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [editing, setEditing] = useState(false)
-  const contentRef = useRef(null);
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!editing) {
@@ -31,8 +31,10 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
   useEffect(() => {
     if (contentRef.current && editing) {
       contentRef.current.focus()
+
       const selection = window.getSelection()
       const range = document.createRange()
+
       range.selectNodeContents(contentRef.current)
       range.collapse(false)
       selection?.removeAllRanges()

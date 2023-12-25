@@ -41,7 +41,7 @@ function DocMain() {
           </div>
         )
       }
-      <div className='doc-bg'>
+      <div className='doc-bg' >
         <DocTools currentData={currentData} />
         {currentData?.markdown ? <MarkdownPage /> : <DocPage />}
       </div>

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import { debounce } from '../../utils'
 import { NoteContext } from '../../store/context'
-import DocDataType from '../../data/type'
+// import DocDataType from '../../data/type'
 
 import './index.less'
 
@@ -24,7 +24,6 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
 
   const handleTitleInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    // setTitle(newContent)
     update(currentId, {
       type: 'title',
       value: newContent
@@ -33,7 +32,6 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
 
   const handleContentInputChange = debounce((event: any) => {
     const newContent = event.target.innerHTML
-    // setContent(newContent)
     update(currentId, {
       type: 'content',
       value: newContent,

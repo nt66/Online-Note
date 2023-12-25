@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Jobs from '../../assets/Jobs.png'
 import './index.less'
 

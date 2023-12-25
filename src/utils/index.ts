@@ -1,15 +1,14 @@
 import { v4 as uuidv4 } from 'uuid'
-import moment from 'moment'
+// import moment from 'moment'
 
 // 初始化文档
 function createInitData() {
   return {
     id: uuidv4(),
     title: "无标题",
-    date: moment().format('YYYY-MM-DD HH:mm:ss'),
+    date:  formatDateTime(new Date()), // moment().format('YYYY-MM-DD HH:mm:ss'),
     markdown: false,
     content: '',
-    // content: '# 标题一<div>## 标题二</div><div>### 标题三</div>'
   }
 }
 
@@ -33,7 +32,7 @@ function removeHtmlTags(input: string): string {
   return input.replace(/<\/?[^>]+(>|$)/g, '')
 }
 
-// 切标签
+// 切html字符串
 function splitStringByDiv(str: string): string[] {
   const divPattern = /<div>(.*?)<\/div>/g
   const firstDivPattern = /^(.*?)(<div>.*<\/div>)/
@@ -63,6 +62,18 @@ function splitStringByDiv(str: string): string[] {
   }
 
   return matches
+}
+
+// 日期格式化
+function formatDateTime(date: Date): string {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 }
 
 export {

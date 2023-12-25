@@ -1,4 +1,5 @@
 import React, { createContext, useState, ReactNode } from 'react'
+import DocDataType from '../data/type'
 import { createInitData } from '../utils/index'
 
 interface NoteContextProps {
@@ -37,7 +38,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
 
   // 删除data
   const remove = (id: string) => {
-    const newDocData = docData.filter(item => item.id !== id)
+    const newDocData = docData.filter((item:DocDataType) => item.id !== id)
     setDocData(newDocData)
     
     // 先这样写
@@ -50,7 +51,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   // 更新data
   const update = (id: string, content: any) => {
     const { type, value } = content
-    const newDocData = docData.map(item=>{
+    const newDocData = docData.map((item:any)=>{
       if(item.id === id){
         item[type] = value
       }
