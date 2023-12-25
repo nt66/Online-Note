@@ -9,18 +9,17 @@ import './index.less'
 const LeftPanel = () => {
   const { shrinkPanel } = useContext(NoteContext)
 
-  const getPanelStyle = () => {
+  const getStyle = () => {
     return {
       width: '270px',
       maxWidth: '270px',
-      userSelect: 'none',
       transform: `translateX(${shrinkPanel ? '-270px' : '0px'})`,
     }
   }
 
   return (
-    <div className='panel-container' style={{ zIndex: `${shrinkPanel ? 10 : 100}` }}>
-      <div className='panel-wrap' style={getPanelStyle()}>
+    <div className='panel-container' style={getStyle()} >
+      <div className='panel-wrap' >
         <UserHander />
         <Search />
         <DocPanelList />
