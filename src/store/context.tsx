@@ -4,10 +4,12 @@ import { createInitData } from '../utils/index'
 interface NoteContextProps {
   docData: any[]
   currentId: string
+  shrinkPanel:boolean
   create: () => void
   remove: (id: string) => void
   update: (id: string, content: any) => void
   updateCurrent: (id: string) => void
+  setShrink:()=> void
 }
 
 interface NoteProviderProps {
@@ -20,6 +22,8 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const NoteApp: string | null = localStorage.getItem('NoteApp') as string
   const [docData, setDocData] = useState(JSON.parse(NoteApp) || [])
   const [currentId, setCurrentId] = useState(JSON.parse(NoteApp)[0]?.id)
+  const [shrinkPanel, setShrinkPanel] = useState(false)
+
   // 添加
   const create = () => {
     const newDocData = createInitData()
@@ -61,13 +65,19 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     setCurrentId(id)
   }
 
+  const setShrink = () => {
+    setShrinkPanel(!shrinkPanel)
+  }
+
   const contextValue: NoteContextProps = {
     docData,
     currentId,
+    shrinkPanel,
     create,
     remove,
     update,
     updateCurrent,
+    setShrink,
   }
   return (<NoteContext.Provider value={contextValue} > {children} </NoteContext.Provider>)
 }

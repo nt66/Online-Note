@@ -4,15 +4,23 @@ import HoldBar from '../HoldBar'
 import UserHander from '../UserHander'
 import Search from '../Search'
 import DocPanelList from '../DocPanelList'
-
 import './index.less'
 
-function LeftPanel() {
-  // const { docData } = useContext(NoteContext);
-  // console.log('docData', docData);
+const LeftPanel = () => {
+  const { shrinkPanel } = useContext(NoteContext)
+
+  const getPanelStyle = () => {
+    return {
+      width: '270px',
+      maxWidth: '270px',
+      userSelect: 'none',
+      transform: `translateX(${shrinkPanel ? '-270px' : '0px'})`,
+    }
+  }
+
   return (
-    <div className='panel-container'>
-      <div className='panel-wrap' style={{ width: '269px', maxWidth: '269px', userSelect: 'none' }}>
+    <div className='panel-container' style={{ zIndex: `${shrinkPanel ? 10 : 100}` }}>
+      <div className='panel-wrap' style={getPanelStyle()}>
         <UserHander />
         <Search />
         <DocPanelList />

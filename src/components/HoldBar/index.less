@@ -6,6 +6,15 @@
   height: 100%;
 }
 
+.bar-wrap-hidden {
+  position: relative;
+  z-index: 250;
+  display: none;
+  width: 0px;
+  height: 100%;
+}
+
+
 .bar-hover {
   position: relative;
   z-index: 30;
@@ -39,11 +48,29 @@
   border: none;
   background-color: rgb(255, 255, 255);
   border-radius: 100%;
+  color: #c9c9ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%) translateY(-50%);
+  transition: transform 0.2s ease 0s, color 0.2s ease 0s, background-color 0.2s ease 0s;
+  cursor: pointer;
+}
+
+.arrow-button-hidden {
+  position: absolute;
+  top: 26px;
+  left: -1000px;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  border: none;
+  background-color: #fff;
+  border-radius: 100%;
   color: rgb(201, 201, 206);
   display: flex;
   align-items: center;
   justify-content: center;
-  // visibility: hidden;
   transform: translateX(-50%) translateY(-50%);
   transition: transform 0.2s ease 0s, color 0.2s ease 0s, background-color 0.2s ease 0s;
 }
