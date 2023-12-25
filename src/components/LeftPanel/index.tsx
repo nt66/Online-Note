@@ -8,7 +8,7 @@ import DocPanelList from '../DocPanelList'
 import './index.less'
 
 function LeftPanel() {
-  const { docData } = useContext(NoteContext);
+  // const { docData } = useContext(NoteContext);
   // console.log('docData', docData);
   return (
     <div className='panel-container'>
