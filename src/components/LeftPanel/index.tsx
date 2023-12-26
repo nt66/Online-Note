@@ -25,7 +25,7 @@ const LeftPanel = () => {
         <Search />
         <DocPanelList />
         <div className='panel-footer'>
-        <img src={editor} alt="SVG Image" style={{width:'20px',height:'20px'}} />
+          <img src={editor} alt="SVG Image" style={{width:'20px',height:'20px'}} />
           <p className='panel-footer-name'>NoteHub | Simple online note</p>
         </div>
       </div>

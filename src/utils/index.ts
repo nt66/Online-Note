@@ -60,8 +60,35 @@ function splitStringByDiv(str: string): string[] {
   if (matches.length === 0) {
     matches.push(str)
   }
-
   return matches
+}
+
+// 提取内容
+function extractContentFromInnerHtml(input:string) {
+  const resultArray = []
+  const divContentRegex = /<div>(.*?)<\/div>/g
+  let match;
+  let lastIndex = 0;
+
+  while ((match = divContentRegex.exec(input)) !== null) {
+    const nonDivContent = input.substring(lastIndex, match.index)
+    if (nonDivContent.trim() !== '') {
+      resultArray.push(nonDivContent.trim())
+    }
+
+    const divContent = match[1]
+    if (divContent.trim() !== '') {
+      resultArray.push(divContent.trim())
+    }
+
+    lastIndex = match.index + match[0].length
+  }
+
+  const lastNonDivContent = input.substring(lastIndex)
+  if (lastNonDivContent.trim() !== '') {
+    resultArray.push(lastNonDivContent.trim())
+  }
+  return resultArray
 }
 
 // 日期格式化
@@ -81,4 +108,5 @@ export {
   debounce,
   removeHtmlTags,
   splitStringByDiv,
+  extractContentFromInnerHtml,
 }

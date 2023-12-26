@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, Fragment, useRef } from 'react'
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import { debounce, splitStringByDiv } from '../../utils'
+import { debounce, extractContentFromInnerHtml } from '../../utils'
 import { NoteContext } from '../../store/context'
 // import DocDataType from '../../data/type'
 
@@ -94,7 +94,7 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
                     onClick={() => setEditing(true)}
                   >
                     {
-                      (splitStringByDiv(content))?.map((item, index: number) => {
+                      (extractContentFromInnerHtml(content))?.map((item, index: number) => {
                         return (
                           <Fragment key={index}>
                             <ReactMarkdown
@@ -119,3 +119,7 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
 }
 
 export default React.memo(MarkDownPage)
+
+{/* <div><span style="font-family: -apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, Helvetica, Arial, &quot;Microsoft YaHei&quot;, Heiti, sans-serif, SimSun, serif, SourceSansPro;">## 第一章：红岸基地</span></div>
+  <div>在很久很久以前</div>
+  <div>### 有个名叫红岸的基地</div> */}
