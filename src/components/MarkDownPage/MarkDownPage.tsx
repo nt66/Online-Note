@@ -6,7 +6,7 @@ import { debounce, extractContentFromInnerHtml } from '../../utils'
 import { NoteContext } from '../../store/context'
 // import DocDataType from '../../data/type'
 
-import './index.less'
+import './MarkDownPage.less'
 
 interface DocPageProps {
   // data: DocDataType

@@ -5,7 +5,7 @@ import UserHander from '../UserHander'
 import Search from '../Search'
 import DocPanelList from '../DocPanelList/DocPanelList'
 import editor from '../../assets/editor.svg'
-import './index.less'
+import './LeftPanel.less'
 
 const LeftPanel = () => {
   const { shrinkPanel } = useContext(NoteContext)

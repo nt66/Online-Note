@@ -1,5 +1,5 @@
 import React, { useState,ReactNode } from 'react'
-import './index.less'
+import './ToolTip.less'
 
 interface TooltipProps {
   text: string

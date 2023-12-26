@@ -10,7 +10,7 @@ import { ReactSVG } from 'react-svg'
 // import h2 from '../../assets/h2.svg'
 // import h3 from '../../assets/h3.svg'
 import Markdown from '../../assets/Markdown.svg'
-import './index.less'
+import './DocTools.less'
 
 interface DocToolsPros {
   currentData:any

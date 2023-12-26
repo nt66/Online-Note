@@ -1,7 +1,7 @@
 import React from 'react'
 // import { ReactSVG } from 'react-svg'
 // import search from '../../assets/search.svg';
-import './index.less'
+import './Search.less'
 
 function Search() {
   return (

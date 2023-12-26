@@ -5,7 +5,7 @@ import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 import note from '../../assets/note.svg'
 import del from '../../assets/del.svg'
-import './index.less'
+import './DocItem.less'
 
 interface DocItemProps {
   key: number

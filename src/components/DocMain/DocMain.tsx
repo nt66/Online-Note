@@ -7,7 +7,7 @@ import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 import grown from '../../assets/grown.svg'
 
-import './index.less'
+import './DocMain.less'
 
 function DocMain() {
   const { docData, currentId, shrinkPanel, setShrink } = useContext(NoteContext)

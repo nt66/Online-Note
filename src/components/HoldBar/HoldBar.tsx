@@ -3,7 +3,7 @@ import { NoteContext } from '../../store/context'
 import { ReactSVG } from 'react-svg'
 
 import leftArrow from '../../assets/leftArrow.svg'
-import './index.less'
+import './HoldBar.less'
 
 function HoldBar() {
   const { setShrink, shrinkPanel } = useContext(NoteContext)

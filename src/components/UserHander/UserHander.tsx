@@ -1,6 +1,6 @@
 import React from 'react'
 import Jobs from '../../assets/Jobs.png'
-import './index.less'
+import './UserHander.less'
 
 function UserHander() {
   return (

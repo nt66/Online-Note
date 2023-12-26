@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
-// import ReactMarkdown from 'react-markdown';
 import { debounce } from '../../utils'
 import { NoteContext } from '../../store/context'
 // import DocDataType from '../../data/type'
 
-import './index.less'
+import './DocPage.less'
 
 interface DocPageProps {
   // data: DocDataType
@@ -64,16 +63,6 @@ const DocPage: React.FC<DocPageProps> = ({}) => {
                 dangerouslySetInnerHTML={{ __html: content }}
               >
               </div>
-              {/* <div
-                key={currentId}
-                className='doc-page-md'
-                contentEditable="true"
-                spellCheck="true"
-                onInput={handleContentInputChange}
-                // dangerouslySetInnerHTML={{ __html: content }}
-              >
-                <ReactMarkdown>{content}</ReactMarkdown>
-              </div> */}
             </div>
           </div>
         </div>

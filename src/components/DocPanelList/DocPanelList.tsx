@@ -5,7 +5,7 @@ import DocItem from '../DocItem'
 import home from '../../assets/home.svg'
 import add from '../../assets/add.svg'
 
-import './index.less'
+import './DocPanelList.less'
 
 function DocPanelList() {
   const { docData, create } = useContext(NoteContext)
