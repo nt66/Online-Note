@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid'
-// import moment from 'moment'
 
 // 初始化文档
 function createInitData() {

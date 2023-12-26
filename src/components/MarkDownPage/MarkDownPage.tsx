@@ -119,7 +119,3 @@ const MarkDownPage: React.FC<DocPageProps> = ({ }) => {
 }
 
 export default React.memo(MarkDownPage)
-
-{/* <div><span style="font-family: -apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, Helvetica, Arial, &quot;Microsoft YaHei&quot;, Heiti, sans-serif, SimSun, serif, SourceSansPro;">## 第一章：红岸基地</span></div>
-  <div>在很久很久以前</div>
-  <div>### 有个名叫红岸的基地</div> */}

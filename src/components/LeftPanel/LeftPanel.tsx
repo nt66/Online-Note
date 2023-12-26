@@ -3,7 +3,7 @@ import { NoteContext } from '../../store/context'
 import HoldBar from '../HoldBar'
 import UserHander from '../UserHander'
 import Search from '../Search'
-import DocPanelList from '../DocPanelList'
+import DocPanelList from '../DocPanelList/DocPanelList'
 import editor from '../../assets/editor.svg'
 import './index.less'
 
