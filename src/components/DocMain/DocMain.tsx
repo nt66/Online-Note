@@ -10,7 +10,7 @@ import grown from '../../assets/grown.svg'
 import './DocMain.less'
 
 function DocMain() {
-  const { docData, currentId, shrinkPanel, setShrink } = useContext(NoteContext)
+  const { docData, currentId, shrinkPanel, panelWidth, setShrink } = useContext(NoteContext)
   const [currentData, setCurrentData] = useState({} as DocDataType)
 
   // useEffect(()=>{
@@ -24,7 +24,7 @@ function DocMain() {
 
   const getStyle = () => {
     return {
-      marginLeft: `${shrinkPanel ? '0' : '270px'}`,
+      marginLeft: `${shrinkPanel ? '0' : panelWidth+'px'}`,
       overflow: 'hidden',
       zIndex: `${shrinkPanel ? '10' : 'auto'}`,
     }

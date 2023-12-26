@@ -5,12 +5,14 @@ import { createInitData } from '../utils/index'
 interface NoteContextProps {
   docData: any[]
   currentId: string
-  shrinkPanel:boolean
+  shrinkPanel: boolean
+  panelWidth: number
   create: () => void
   remove: (id: string) => void
   update: (id: string, content: any) => void
   updateCurrent: (id: string) => void
-  setShrink:()=> void
+  setShrink: () => void
+  updatePanelWidth: (deltaX: number) => void
 }
 
 interface NoteProviderProps {
@@ -24,6 +26,7 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const [docData, setDocData] = useState(JSON.parse(NoteApp) || [])
   const [currentId, setCurrentId] = useState(JSON.parse(NoteApp)[0]?.id)
   const [shrinkPanel, setShrinkPanel] = useState(false)
+  const [panelWidth, setPanelWidth] = useState(270)
 
   // 添加data
   const create = () => {
@@ -31,28 +34,28 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     setDocData([...docData, newDocData])
     setTimeout(() => {
       setCurrentId(newDocData.id)
-    },100)
-    
+    }, 100)
+
     localStorage.setItem('NoteApp', JSON.stringify([...docData, newDocData]))
   }
 
   // 删除data
   const remove = (id: string) => {
-    const newDocData = docData.filter((item:DocDataType) => item.id !== id)
+    const newDocData = docData.filter((item: DocDataType) => item.id !== id)
     setDocData(newDocData)
-    
-    // 先这样写
+
     setTimeout(() => {
       setCurrentId(newDocData[newDocData.length - 1]?.id)
     }, 100)
+
     localStorage.setItem('NoteApp', JSON.stringify(newDocData))
   }
 
   // 更新data
   const update = (id: string, content: any) => {
     const { type, value } = content
-    const newDocData = docData.map((item:any)=>{
-      if(item.id === id){
+    const newDocData = docData.map((item: any) => {
+      if (item.id === id) {
         item[type] = value
       }
       return item
@@ -71,15 +74,29 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     setShrinkPanel(!shrinkPanel)
   }
 
+  // 设置panelwidth
+  const updatePanelWidth = (deltaX: number) => {
+    let newWidth = panelWidth + deltaX
+    if (newWidth < 260) {
+      newWidth = 260
+    }
+    if (newWidth > 500) {
+      newWidth = 500
+    }
+    setPanelWidth(() => newWidth)
+  }
+
   const contextValue: NoteContextProps = {
     docData,
     currentId,
     shrinkPanel,
+    panelWidth,
     create,
     remove,
     update,
     updateCurrent,
     setShrink,
+    updatePanelWidth,
   }
   return (<NoteContext.Provider value={contextValue} > {children} </NoteContext.Provider>)
 }

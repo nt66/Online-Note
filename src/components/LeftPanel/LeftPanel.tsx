@@ -8,13 +8,13 @@ import editor from '../../assets/editor.svg'
 import './LeftPanel.less'
 
 const LeftPanel = () => {
-  const { shrinkPanel } = useContext(NoteContext)
+  const { shrinkPanel, panelWidth } = useContext(NoteContext)
 
   const getStyle = () => {
     return {
-      width: '270px',
-      maxWidth: '270px',
-      transform: `translateX(${shrinkPanel ? '-270px' : '0px'})`,
+      width: `${panelWidth}px`,   //'270px',
+      maxWidth:`${panelWidth}px`,  //'270px',
+      transform: `translateX(${shrinkPanel ? `-${panelWidth}px` : '0px'})`,
     }
   }
 
