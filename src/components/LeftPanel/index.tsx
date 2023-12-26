@@ -4,6 +4,7 @@ import HoldBar from '../HoldBar'
 import UserHander from '../UserHander'
 import Search from '../Search'
 import DocPanelList from '../DocPanelList'
+import editor from '../../assets/editor.svg'
 import './index.less'
 
 const LeftPanel = () => {
@@ -23,6 +24,10 @@ const LeftPanel = () => {
         <UserHander />
         <Search />
         <DocPanelList />
+        <div className='panel-footer'>
+        <img src={editor} alt="SVG Image" style={{width:'20px',height:'20px'}} />
+          <p className='panel-footer-name'>NoteHub | Simple online note</p>
+        </div>
       </div>
       <HoldBar />
     </div>

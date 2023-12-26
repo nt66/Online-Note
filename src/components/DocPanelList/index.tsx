@@ -12,7 +12,7 @@ function DocPanelList() {
   // 文档列表
   const docItemResult = useMemo(()=>{
       return(
-        <div className='doc-views' style={{height:'600px'}} >
+        <div className='doc-views' style={{height:'calc(100%)'}} >
           {
             docData.map((item:any,index:number)=>{
               return(
@@ -35,7 +35,7 @@ function DocPanelList() {
           </button>
         </a>
       </div>
-      <div style={{height:'700px', overflow:'hidden'}}>
+      <div style={{height:'100%', overflow:'hidden'}}>
         {docItemResult}
       </div>
     </div>
