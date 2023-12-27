@@ -34,7 +34,7 @@ function HoldBar() {
         onMouseDown={handleMouseDown}      
       >
         <button className={shrinkPanel ? 'arrow-button-hidden' : 'arrow-button'} onClick={() => setShrink()}>
-          <ReactSVG src={leftArrow} style={{ fill: '#9D9DA6', width: 20, height: 20 }} />
+          <ReactSVG src={leftArrow} style={{ width: 20, height: 20 }} />
         </button>
       </div>
     </div>

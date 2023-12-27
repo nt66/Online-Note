@@ -1,5 +1,6 @@
 <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg t="1703157965384" class="icon" viewBox="0 0 1024 1024" version="1.1"
+<svg t="1703157965384" class="larrow" viewBox="0 0 1024 1024" version="1.1"
+  fill="#9D9DA6"
   xmlns="http://www.w3.org/2000/svg" p-id="5026"
   xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M553.38 726.62L372.69 545.94c-18.72-18.72-18.72-49.16 0-67.88l180.69-180.69c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L429.25 512l169.38 169.38c12.5 12.5 12.5 32.75 0 45.25-6.25 6.25-14.44 9.38-22.62 9.38s-16.39-3.13-22.63-9.39zM417.62 523.31h0.31-0.31z" p-id="5027"></path>
