@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from 'react'
+import React, { createContext, useState, ReactNode, useEffect } from 'react'
 import DocDataType from '../data/type'
 import { createInitData } from '../utils/index'
 
@@ -28,6 +28,11 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const [shrinkPanel, setShrinkPanel] = useState(false)
   const [panelWidth, setPanelWidth] = useState(270)
 
+
+  useEffect(()=>{
+
+  },[docData])
+
   // 添加data
   const create = () => {
     const newDocData = createInitData()
@@ -41,12 +46,10 @@ const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
   const remove = (id: string) => {
     const newDocData = docData.filter((item: DocDataType) => item.id !== id)
     setDocData(newDocData)
-
-    setTimeout(() => {
-      setCurrentId(newDocData[newDocData.length - 1]?.id)
-    }, 100)
-
     localStorage.setItem('NoteApp', JSON.stringify(newDocData))
+    if(currentId === id){
+      setCurrentId(newDocData[0]?.id)
+    }
   }
 
   // 更新data

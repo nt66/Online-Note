@@ -16,6 +16,13 @@ const DocItem: React.FC<DocItemProps> = ({ item }) => {
   const { title, id } = item
   const { updateCurrent, currentId, remove } = useContext(NoteContext)
   const [isHover, setHover] = useState(false)
+
+  const removeItem = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    event.stopPropagation()
+    remove(id)
+  }
+
   return (
     <div className='doc-item-wrap'>
       <div className='doc-item'
@@ -27,7 +34,7 @@ const DocItem: React.FC<DocItemProps> = ({ item }) => {
           <div className='item-row'>
             <img src={note} className='item-row-icon' />
             <div className='doc-title'>{removeHtmlTags(title)}</div>
-            {isHover && (<button className='doc-delete' onClick={() => remove(id)} >
+            {isHover && (<button className='doc-delete' onClick={removeItem} >
               <ReactSVG src={del} style={{ width: '20px', height: '20px' }} />
             </button>)}
           </div>
