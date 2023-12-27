@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg'
 import DocTools from '../DocTools'
 import DocPage from '../DocPage'
 import MarkdownPage from '../MarkDownPage'
+import Empty from '../Empty'
 import { NoteContext } from '../../store/context'
 import DocDataType from '../../data/type'
 import grown from '../../assets/grown.svg'
@@ -30,6 +31,7 @@ function DocMain() {
     }
   }
 
+  console.log('currentId:',currentId);
   return (
     <div className='doc-container' style={getStyle()}>
       {
@@ -43,7 +45,8 @@ function DocMain() {
       }
       <div className='doc-bg' >
         <DocTools currentData={currentData} />
-        {currentData?.markdown ? <MarkdownPage /> : <DocPage />}
+        {currentId?(currentData?.markdown ? <MarkdownPage /> : <DocPage />):<Empty />}
+        {/* {currentData?.markdown ? <MarkdownPage /> : <DocPage />} */}
       </div>
     </div>
   )
