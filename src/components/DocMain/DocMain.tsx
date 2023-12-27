@@ -14,10 +14,6 @@ function DocMain() {
   const { docData, currentId, shrinkPanel, panelWidth, setShrink } = useContext(NoteContext)
   const [currentData, setCurrentData] = useState({} as DocDataType)
 
-  // useEffect(()=>{
-  //   updateCurrent(docData[docData?.length-1]?.id)
-  // },[docData])
-
   useEffect(() => {
     const currentDocData = docData.filter((item: any) => item.id === currentId)
     setCurrentData(currentDocData[0] || {})
@@ -31,7 +27,6 @@ function DocMain() {
     }
   }
 
-  console.log('currentId:',currentId);
   return (
     <div className='doc-container' style={getStyle()}>
       {
@@ -46,7 +41,6 @@ function DocMain() {
       <div className='doc-bg' >
         <DocTools currentData={currentData} />
         {currentId?(currentData?.markdown ? <MarkdownPage /> : <DocPage />):<Empty />}
-        {/* {currentData?.markdown ? <MarkdownPage /> : <DocPage />} */}
       </div>
     </div>
   )
