@@ -36,6 +36,10 @@ pnpm run deploy
 - 8.编辑区域中间，是文档的正文，修改内容后会实时同步至localstorage
 - 9.正文编辑区域为markdown模式编辑时，鼠标焦点移出区域，markdown会被立即解析。且此时是只读模式；鼠标点击解析的文本又会切换至编辑模式
 
+## 🔗 Home Page
+
+https://nt66.github.io/Online-Note
+
 ## Learn More
 
 To learn more about Vite and React, check out the following resources:
