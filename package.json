@@ -2,7 +2,7 @@
   "name": "online-note",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://nt66.github.io/Online-Note/",
+  "homepage": "https://nt66.github.io/Online-Note",
   "type": "module",
   "scripts": {
     "dev": "vite",

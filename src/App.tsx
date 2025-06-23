@@ -1,5 +1,5 @@
 // import { useState, useContext } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LeftPanel from "./components/LeftPanel";
 import DocMain from "./components/DocMain";
 import GTMtest from "./components/GTMtest";
@@ -27,7 +27,7 @@ function App() {
     <NoteProvider>
       <Routes>
         <Route
-          path="/Online-Note/"
+          path="/"
           element={
             <main className="app">
               <LeftPanel />
@@ -35,7 +35,7 @@ function App() {
             </main>
           }
         />
-        <Route path="/Online-Note/gtmtest" element={<GTMtest />} />
+        <Route path="/gtmtest" element={<GTMtest />} />
       </Routes>
     </NoteProvider>
   );
