@@ -9,7 +9,7 @@ const GTMtest: React.FC = () => {
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/fMevmwbwVh8"
+          src="https://www.youtube.com/embed/fMevmwbwVh8?enablejsapi=1"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
