@@ -27,7 +27,7 @@ function App() {
     <NoteProvider>
       <Routes>
         <Route
-          path="/"
+          path="/Online-Note/"
           element={
             <main className="app">
               <LeftPanel />
@@ -35,7 +35,7 @@ function App() {
             </main>
           }
         />
-        <Route path="/gtmtest" element={<GTMtest />} />
+        <Route path="/Online-Note/gtmtest" element={<GTMtest />} />
       </Routes>
     </NoteProvider>
   );
